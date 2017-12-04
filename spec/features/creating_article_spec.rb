@@ -12,4 +12,15 @@ RSpec.feature "Creating articles" do
         expect(page).to have_content("Article has been created")
         expect(page.current_path).to eq(articles_path)
     end
+
+    scenario "A user fails to creat a new article" do 
+        visit "/"
+        click_link "New Article"
+
+        click_button "Create Article"
+        expect(page).to have_content("Article has not been created")
+        expect(page).to have_content("Title can't be black")
+        expect(page).to have_content("Body can't be black")
+
+    end 
 end 
